@@ -1,15 +1,13 @@
-import express from 'express';
-import routes from './src/routes/crmRoutes';
+import express from "express";
+import routes from "./src/routes/crmRoutes.js";
 
 const app = express();
-const PORT = 3000;
+const PORT = 5000;
 
 routes(app);
 
-app.get('/', (req, res) => 
-    res.send(`Node and express server is running on port ${PORT}`)
+app.get("/", (req, res) =>
+  res.send(`Node and express server is running on port ${PORT}`)
 );
 
-app.listen(PORT, () => 
-    console.log(`Your server is running on port ${PORT}`)
-);
+app.listen(PORT, () => console.log(`Your server is running on port ${PORT}`));
