@@ -62,3 +62,17 @@ export const getContactWithID = async (req, res, next) => {
     next();
   }
 };
+
+// already doing the most updated way so I don't get an error
+export const updateContact = async (req, res, next) => {
+  try {
+    const contact = Contact.findOneAndUpdate(
+      { _id: req.params.contactId },
+      req.body,
+      { new: true }
+    );
+    res.json(contact);
+  } catch (err) {
+    next(err);
+  }
+};
