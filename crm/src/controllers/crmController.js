@@ -56,8 +56,8 @@ export const getContacts = async (req, res, next) => {
 
 export const getContactWithID = async (req, res, next) => {
   try {
-    const contact = await Contact.findById(req.params.contactId);
-    res.json(contact);
+    const contactWithId = await Contact.findById(req.params.contactId);
+    res.json(contactWithId);
   } catch (err) {
     next();
   }
@@ -66,12 +66,24 @@ export const getContactWithID = async (req, res, next) => {
 // already doing the most updated way so I don't get an error
 export const updateContact = async (req, res, next) => {
   try {
-    const contact = await Contact.findOneAndUpdate(
+    const updatedContact = await Contact.findOneAndUpdate(
       { _id: req.params.contactId },
       req.body,
       { new: true }
     );
-    res.json(contact);
+    res.json(updatedContact);
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const deleteContact = async (req, res, next) => {
+  try {
+    // remove() is deprecated
+    await Contact.deleteOne({
+      _id: req.params.contactId,
+    });
+    res.json({ message: "Successfully deleted contact." });
   } catch (err) {
     next(err);
   }
