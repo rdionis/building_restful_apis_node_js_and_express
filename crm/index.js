@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import routes from "./src/routes/crmRoutes.js";
+import e from "express";
 
 const app = express();
 const PORT = 3000;
@@ -18,6 +19,9 @@ mongoose.connect("mongodb://localhost/CRMdb", process.env.MONGODB_URI);
 //bodypaser setup
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+// serving static files
+app.use(express.static("public"));
 
 routes(app);
 
