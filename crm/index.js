@@ -1,8 +1,23 @@
 import express from "express";
+import mongoose from "mongoose";
+import bodyParser from "body-parser";
 import routes from "./src/routes/crmRoutes.js";
 
 const app = express();
 const PORT = 3000;
+
+// mongoose connection
+
+mongoose.Promise = global.Promise;
+mongoose.connect("mongodb://localhost/CRMdb", process.env.MONGODB_URI);
+
+// mongoose.connect("mongodb://localhost/CRMdb", {
+//   useNewUrlParser: true,
+//});
+
+//bodypaser setup
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 routes(app);
 
