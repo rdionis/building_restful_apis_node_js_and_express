@@ -66,7 +66,7 @@ export const getContactWithID = async (req, res, next) => {
 // already doing the most updated way so I don't get an error
 export const updateContact = async (req, res, next) => {
   try {
-    const contact = Contact.findOneAndUpdate(
+    const contact = await Contact.findOneAndUpdate(
       { _id: req.params.contactId },
       req.body,
       { new: true }
