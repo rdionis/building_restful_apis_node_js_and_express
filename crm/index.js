@@ -8,7 +8,6 @@ const app = express();
 const PORT = 3000;
 
 // mongoose connection
-
 mongoose.Promise = global.Promise;
 mongoose.connect("mongodb://localhost/CRMdb", process.env.MONGODB_URI);
 
@@ -16,7 +15,7 @@ mongoose.connect("mongodb://localhost/CRMdb", process.env.MONGODB_URI);
 //   useNewUrlParser: true,
 //});
 
-//bodypaser setup
+// bodypaser setup
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
